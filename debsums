@@ -1,0 +1,21 @@
+#!/bin/bash
+files="$*"
+echo 'Checksums-Sha1:'
+for file in $files; do
+    sum=`shasum $file | awk '{print $1}'`
+    size=`ls -l $file  | awk '{print $5}'`
+    echo "  $sum $size $file"
+done
+echo 'Checksums-Sha256:'
+for file in $files; do
+    sum=`sha256sum $file | awk '{print $1}'`
+    size=`ls -l $file  | awk '{print $5}'`
+    echo "  $sum $size $file"
+done
+echo 'Files:'
+for file in $files; do
+    sum=`md5sum $file | awk '{print $1}'`
+    size=`ls -l $file  | awk '{print $5}'`
+    echo "  $sum $size $file"
+done
+
